@@ -1,0 +1,80 @@
+version: '3.9'
+
+services:
+  json2toon-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - PYTHON_VERSION=3.11
+    image: json2toon:2.0.0
+    container_name: json2toon-mcp-server
+
+    # MCP servers communicate via stdio
+    stdin_open: true
+    tty: true
+
+    # Environment variables
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=INFO
+
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+    # Restart policy
+    restart: unless-stopped
+
+    # Labels
+    labels:
+      - "com.json2toon.description=JSON2TOON Advanced MCP Server"
+      - "com.json2toon.version=2.0.0"
+      - "com.json2toon.compression-levels=4"
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; from src.advanced_converter import AdvancedTOONConverter; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+    # Logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Optional: Development container with mounted volumes
+  json2toon-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: json2toon:dev
+    container_name: json2toon-dev
+    stdin_open: true
+    tty: true
+
+    # Mount source code for live development
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./examples:/app/examples
+
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=DEBUG
+      - DEVELOPMENT=1
+
+    command: /bin/bash
+
+    profiles:
+      - dev
