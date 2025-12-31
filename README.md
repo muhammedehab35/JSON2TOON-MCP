@@ -67,7 +67,7 @@ JSON2TOON is a next-generation MCP server that revolutionizes JSON compression w
 
 ```bash
 # Clone repository
-git clone https://github.com/your-org/json2toon.git
+git clone https://github.com/muhammedehab35/JSON2TOON-MCP.git
 cd json2toon
 
 # Install with pip
@@ -441,12 +441,6 @@ Contributions are welcome! Please:
 5. Commit changes (`git commit -m 'Add amazing feature'`)
 6. Push to branch (`git push origin feature/amazing-feature`)
 7. Open a Pull Request
-
----
-
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
