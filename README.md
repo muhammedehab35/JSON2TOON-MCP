@@ -495,30 +495,10 @@ Compress structured logs by 50-60% for pattern analysis.
 4. ✅ Use `estimate_savings` before large batch jobs
 5. ✅ Monitor with `get_server_stats` for metrics
 
----
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/your-org/json2toon/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-org/json2toon/discussions)
-- **Documentation**: See `/docs` directory
-- **Examples**: See `/examples` directory
-
----
-
-## 🎉 Acknowledgments
-
-Built with inspiration from the original TOON-MCP project, enhanced with advanced AI-powered compression techniques and extensive pattern recognition capabilities.
-
----
-
-**🚀 Ready to save 75-85% on your token usage?**
-
-Start with JSON2TOON v2.0 today and revolutionize your AI context management!
 
 ```bash
 pip install -e .
 python -m src.mcp_server
 ```
 
-Happy compressing! 🎊
+
